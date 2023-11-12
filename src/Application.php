@@ -20,6 +20,11 @@ class Application
         $this->output = $output;
     }
 
+    public function getOutput(): OutputInterface
+    {
+        return $this->output;
+    }
+
     /**
      * @return void
      * @throws ApplicationException
