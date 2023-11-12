@@ -1,6 +1,3 @@
-volumes:
-    app:
-
 services:
     app:
         build:
@@ -16,23 +13,4 @@ services:
         command: /usr/bin/bash
         tty: true
         volumes:
-            - app:/app
-x-mutagen:
-    sync:
-        defaults:
-            ignore:
-                paths:
-                    - .idea/
-                    - .git/
-                    - var/*
-            mode: two-way-resolved
-            permissions:
-                defaultFileMode: "0644"
-                defaultDirectoryMode: "0755"
-            configurationBeta:
-                permissions:
-                    defaultOwner: id:$APP_USER_ID
-                    defaultGroup: id:$APP_GROUP_ID
-        app:
-            alpha: "."
-            beta: "volume://app"
+            - ./:/app

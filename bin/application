@@ -1,0 +1,26 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+require "vendor/autoload.php";
+
+use App\Application;
+use App\Exception\ApplicationException;
+use App\Kernel;
+use App\Output\ConsoleOutput;
+
+$container = Kernel::createContainer();
+
+/** @var Application $application */
+$application = $container->get('app.application');
+
+/** @var ConsoleOutput $consoleOutput */
+$consoleOutput = $container->get('app.output.console');
+
+try {
+    $application->run();
+} catch (ApplicationException $exception) {
+    $consoleOutput->outputLine(sprintf('Error (exit code %s): %s', $exception->getCode(), $exception->getMessage()));
+    exit($exception->getCode());
+}
