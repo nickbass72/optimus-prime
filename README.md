@@ -1,2 +1,2 @@
-# optimus-prime
+# Optimus Prime
 Prime numbers product table

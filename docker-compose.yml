@@ -1,0 +1,38 @@
+volumes:
+    app:
+
+services:
+    app:
+        build:
+            context: ./build
+            dockerfile: Dockerfile-php-dev-$APP_HOST_CPU
+            args:
+                APP_USER_ID: $APP_USER_ID
+                APP_GROUP_ID: $APP_GROUP_ID
+        image: optimus-prime-$APP_HOST_CPU-php
+        container_name: optimus-prime-app
+        hostname: optimus-prime-app
+        working_dir: /app
+        command: /usr/bin/bash
+        tty: true
+        volumes:
+            - app:/app
+x-mutagen:
+    sync:
+        defaults:
+            ignore:
+                paths:
+                    - .idea/
+                    - .git/
+                    - var/*
+            mode: two-way-resolved
+            permissions:
+                defaultFileMode: "0644"
+                defaultDirectoryMode: "0755"
+            configurationBeta:
+                permissions:
+                    defaultOwner: id:$APP_USER_ID
+                    defaultGroup: id:$APP_GROUP_ID
+        app:
+            alpha: "."
+            beta: "volume://app"

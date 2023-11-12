@@ -1,0 +1,24 @@
+FROM arm64v8/php:8.2-cli
+
+ARG APP_USER_ID
+ARG APP_GROUP_ID
+
+RUN apt-get update && apt-get install -y \
+    git \
+    libzip-dev \
+    zip \
+	&& docker-php-ext-install -j$(nproc) zip
+
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php -r "if (hash_file('sha384', 'composer-setup.php') === 'e21205b207c3ff031906575712edab6f13eb0b361f2085f1f1237b7126d785e826a450292b6cfd1d64d92e6563bbde02') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
+    && php composer-setup.php \
+    && php -r "unlink('composer-setup.php');" \
+    && mv composer.phar /usr/local/bin/composer
+
+RUN groupadd --gid=$APP_GROUP_ID app
+RUN useradd --uid=$APP_USER_ID --gid=$APP_GROUP_ID --create-home --shell=/usr/bin/bash app
+RUN mkdir /app
+RUN chown -R app:app /app
+
+USER app
+WORKDIR /app
