@@ -6,6 +6,6 @@ namespace App\Exception;
 
 use RuntimeException;
 
-class PrimeNumbersGeneratorException extends RuntimeException
+class NumbersGeneratorException extends RuntimeException
 {
 }

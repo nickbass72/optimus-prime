@@ -5,20 +5,20 @@ declare(strict_types=1);
 use App\Application;
 use App\Generator\PrimeNumbersGenerator;
 use App\Output\ConsoleOutput;
-use App\Table\PrimeNumbersMultiplicationTable;
+use App\Table\IntegerMultiplicationTable;
 use function DI\create;
 use function DI\get;
 
 return [
     // Prime numbers generator
-    'app.prime_numbers.generator' => create(PrimeNumbersGenerator::class),
+    'app.generator.prime_numbers' => create(PrimeNumbersGenerator::class),
 
-    // Multiplication table
-    'app.prime_numbers.multiplication_table' => create(PrimeNumbersMultiplicationTable::class)
+    // Prime numbers multiplication table
+    'app.table.prime_numbers_multiplication_table' => create(IntegerMultiplicationTable::class)
         ->constructor(
-            get('app.prime_numbers.generator'),
-            get('parameters.multiplication_table.numbers_count'),
-            get('parameters.multiplication_table.start_number'),
+            get('app.generator.prime_numbers'),
+            get('parameters.prime_numbers_multiplication_table.limit'),
+            get('parameters.prime_numbers_multiplication_table.start_number'),
         )
     ,
 
@@ -28,7 +28,7 @@ return [
     // Application
     'app.application' => create(Application::class)
         ->constructor(
-            get('app.prime_numbers.multiplication_table'),
+            get('app.table.prime_numbers_multiplication_table'),
             get('app.output.console'),
         )
     ,

@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Generator;
 
-use App\Exception\PrimeNumbersGeneratorException;
+use App\Exception\NumbersGeneratorException;
 
 class PrimeNumbersGenerator implements NumbersGeneratorInterface
 {
     /**
      * @param int $limit
      * @param int|null $startNumber
-     * @return array
-     * @throws PrimeNumbersGeneratorException
+     * @return int[]
+     * @throws NumbersGeneratorException
      */
     public function generate(int $limit, ?int $startNumber = 2): array
     {
         if ($startNumber < 0) {
-            throw new PrimeNumbersGeneratorException('Starting number cannot be negative number');
+            throw new NumbersGeneratorException('Starting number cannot be negative number');
         }
 
         $count = 0;

@@ -6,7 +6,7 @@ namespace App\Tests\Unit;
 
 use App\Application;
 use App\Exception\ApplicationException;
-use App\Exception\PrimeNumbersGeneratorException;
+use App\Exception\NumbersGeneratorException;
 use App\Output\OutputInterface;
 use App\Table\IntegerTableInterface;
 use PHPUnit\Framework\MockObject\Exception;
@@ -48,7 +48,7 @@ class ApplicationTest extends TestCase
     {
         $this->table
             ->method('getRowsIterator')
-            ->willThrowException(new PrimeNumbersGeneratorException())
+            ->willThrowException(new NumbersGeneratorException())
         ;
 
         $this->expectException(ApplicationException::class);
