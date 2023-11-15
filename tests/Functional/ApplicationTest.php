@@ -23,8 +23,8 @@ class ApplicationTest extends TestCase
         parent::setUp();
 
         $container = Kernel::createContainer();
-        $container->set('parameters.multiplication_table.numbers_count', 3);
-        $container->set('parameters.multiplication_table.start_number', 2);
+        $container->set('parameters.prime_numbers_multiplication_table.limit', 3);
+        $container->set('parameters.prime_numbers_multiplication_table.start_number', 2);
 
         $this->application = $container->get('app.application');
     }

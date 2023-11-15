@@ -23,8 +23,6 @@ x-mutagen:
             ignore:
                 paths:
                     - .idea/
-                    - .git/
-                    - var/*
             mode: two-way-resolved
             permissions:
                 defaultFileMode: "0644"

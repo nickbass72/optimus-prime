@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Generator;
 
-use App\Exception\PrimeNumbersGeneratorException;
+use App\Exception\NumbersGeneratorException;
 use App\Generator\PrimeNumbersGenerator;
 use App\Generator\NumbersGeneratorInterface;
 use PHPUnit\Framework\TestCase;
@@ -51,7 +51,7 @@ class PrimeNumbersGeneratorTest extends TestCase
 
     public function testGenerateError(): void
     {
-        $this->expectException(PrimeNumbersGeneratorException::class);
+        $this->expectException(NumbersGeneratorException::class);
         $this->generator->generate(10, -1);
     }
 }

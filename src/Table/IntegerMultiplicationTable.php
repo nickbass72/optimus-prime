@@ -6,7 +6,7 @@ namespace App\Table;
 
 use App\Generator\NumbersGeneratorInterface;
 
-class PrimeNumbersMultiplicationTable implements IntegerTableInterface
+class IntegerMultiplicationTable implements IntegerTableInterface
 {
     private NumbersGeneratorInterface $primeNumbersGenerator;
     private int $limit;

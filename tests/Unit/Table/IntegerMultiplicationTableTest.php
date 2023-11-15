@@ -7,11 +7,11 @@ namespace App\Tests\Unit\Table;
 use App\Generator\NumbersGeneratorInterface;
 use App\Table\IntegerTableCell;
 use App\Table\IntegerTableRow;
-use App\Table\PrimeNumbersMultiplicationTable;
+use App\Table\IntegerMultiplicationTable;
 use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 
-class PrimeNumbersMultiplicationTableTest extends TestCase
+class IntegerMultiplicationTableTest extends TestCase
 {
     /**
      * @dataProvider getRowsProvider
@@ -29,7 +29,7 @@ class PrimeNumbersMultiplicationTableTest extends TestCase
         ;
 
         $startNumber = reset($primeNumbers);
-        $table = new PrimeNumbersMultiplicationTable(
+        $table = new IntegerMultiplicationTable(
             $generator,
             count($primeNumbers),
             $startNumber !== false ? $startNumber : null
